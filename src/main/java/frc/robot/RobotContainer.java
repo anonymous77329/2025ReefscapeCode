@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -10,6 +11,7 @@ import frc.lib.generic.GenericSubsystem;
 import frc.lib.util.Controller;
 import frc.lib.util.flippable.Flippable;
 import frc.robot.poseestimation.poseestimator.PoseEstimator5990;
+import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.leds.Leds;
 import frc.robot.subsystems.swerve.Swerve;
 import frc.robot.subsystems.swerve.SwerveCommands;
@@ -21,8 +23,7 @@ import java.util.function.DoubleSupplier;
 import static frc.lib.util.Controller.Axis.LEFT_X;
 import static frc.lib.util.Controller.Axis.LEFT_Y;
 import static frc.robot.poseestimation.poseestimator.PoseEstimatorConstants.FRONT_CAMERA;
-import static frc.robot.utilities.FieldLocations.BLUE_BOTTOM_FEEDER;
-import static frc.robot.utilities.FieldLocations.BLUE_TOP_FEEDER;
+import static frc.robot.utilities.FieldLocations.*;
 import static frc.robot.utilities.PathPlannerConstants.PATHPLANNER_CONSTRAINTS;
 
 public class RobotContainer {
@@ -32,6 +33,7 @@ public class RobotContainer {
 
     public static final Swerve SWERVE = new Swerve();
     public static final Leds LEDS = new Leds();
+    public static final Elevator ELEVATOR = new Elevator();
 
     private final Trigger userButton = new Trigger(RobotController::getUserButton);
 
@@ -62,6 +64,8 @@ public class RobotContainer {
         driveController.getButton(Controller.Inputs.B).whileTrue(AutoBuilder.pathfindToPose(
                 BLUE_BOTTOM_FEEDER.toPose2d(), PATHPLANNER_CONSTRAINTS));
 
+        driveController.getButton(Controller.Inputs.Y).whileTrue(ELEVATOR.setTargetPosition(L2_HEIGHT));
+        driveController.getButton(Controller.Inputs.X).whileTrue(ELEVATOR.setTargetPosition(L3_HEIGHT));
 
         configureButtons(ButtonLayout.TELEOP);
     }
