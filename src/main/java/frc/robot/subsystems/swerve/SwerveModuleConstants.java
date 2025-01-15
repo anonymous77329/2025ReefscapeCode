@@ -9,18 +9,7 @@ import frc.lib.generic.simulation.SimulationProperties;
 import static frc.lib.generic.hardware.motor.MotorSignal.*;
 import static frc.robot.subsystems.swerve.SwerveConstants.DRIVE_GEAR_RATIO;
 import static frc.robot.subsystems.swerve.SwerveConstants.STEER_GEAR_RATIO;
-import static frc.robot.utilities.PortsConstants.SwervePorts.FL_DRIVE_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.FL_STEER_ENCODER_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.FL_STEER_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.FR_DRIVE_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.FR_STEER_ENCODER_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.FR_STEER_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.RL_DRIVE_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.RL_STEER_ENCODER_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.RL_STEER_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.RR_DRIVE_MOTOR_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.RR_STEER_ENCODER_PORT;
-import static frc.robot.utilities.PortsConstants.SwervePorts.RR_STEER_MOTOR_PORT;
+import static frc.robot.utilities.PortsConstants.SwervePorts.*;
 
 public class SwerveModuleConstants {
     static final MotorConfiguration steerMotorConfiguration = new MotorConfiguration();

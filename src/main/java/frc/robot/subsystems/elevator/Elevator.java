@@ -20,32 +20,32 @@ public class Elevator extends GenericSubsystem {
     }
 
     public void periodic() {
-        if (BOTTOM_BEAM_BREAK.get() == 1) {
-            ELEVATOR_LEFT_MOTOR.setMotorEncoderPosition(0);
-            ELEVATOR_RIGHT_MOTOR.setMotorEncoderPosition(0);
-        }
-
-        if (TOP_BEAM_BREAK.get() == 1) {
-            ELEVATOR_LEFT_MOTOR.setMotorEncoderPosition(ELEVATOR_MAX_EXTENSION_METERS);
-            ELEVATOR_RIGHT_MOTOR.setMotorEncoderPosition(ELEVATOR_MAX_EXTENSION_METERS);
-        }
+//        if (BOTTOM_BEAM_BREAK.get() == 1) {
+//            ELEVATOR_LEFT_MOTOR.setMotorEncoderPosition(0);
+//            ELEVATOR_RIGHT_MOTOR.setMotorEncoderPosition(0);
+//        }
+//
+//        if (TOP_BEAM_BREAK.get() == 1) {
+//            ELEVATOR_LEFT_MOTOR.setMotorEncoderPosition(ELEVATOR_MAX_EXTENSION_METERS);
+//            ELEVATOR_RIGHT_MOTOR.setMotorEncoderPosition(ELEVATOR_MAX_EXTENSION_METERS);
+//        }
     }
 
     private void printPose(double targetPositionMetes) {
         final Pose3d current3DPose = new Pose3d(0, 0, targetPositionMetes, new Rotation3d(0, 0, 0));
         Logger.recordOutput("Elevator", current3DPose);
 
-        MECHANISM.updateCurrentPosition(ELEVATOR_LEFT_MOTOR.getSystemPosition());
+        MECHANISM.updateCurrentPosition(MAIN_MOTOR.getSystemPosition());
         MECHANISM.updateTargetPosition(targetPositionMetes);
     }
 
     private void setMotorPosition(double targetPosition) {
-        ELEVATOR_LEFT_MOTOR.setOutput(MotorProperties.ControlMode.POSITION, targetPosition);
-        ELEVATOR_RIGHT_MOTOR.setOutput(MotorProperties.ControlMode.POSITION, targetPosition);
+        MAIN_MOTOR.setOutput(MotorProperties.ControlMode.POSITION, targetPosition);
+        FOLLOWER_MOTOR.setOutput(MotorProperties.ControlMode.POSITION, targetPosition);
     }
 
     private void stopMotors() {
-        ELEVATOR_LEFT_MOTOR.stopMotor();
-        ELEVATOR_RIGHT_MOTOR.stopMotor();
+        MAIN_MOTOR.stopMotor();
+        FOLLOWER_MOTOR.stopMotor();
     }
 }

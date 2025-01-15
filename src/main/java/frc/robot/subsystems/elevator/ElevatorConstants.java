@@ -7,14 +7,16 @@ import frc.lib.generic.hardware.sensors.SensorFactory;
 import frc.lib.generic.simulation.SimulationProperties;
 import frc.lib.generic.visualization.mechanisms.ElevatorMechanism2d;
 
+import static frc.robot.utilities.PortsConstants.ElevatorPorts.*;
+
 public class ElevatorConstants {
     protected static final Motor
-            ELEVATOR_LEFT_MOTOR = MotorFactory.createSpark("Elevator Left Motor", 0, MotorProperties.SparkType.MAX),
-            ELEVATOR_RIGHT_MOTOR = MotorFactory.createSpark("Elevator Right Motor", 1, MotorProperties.SparkType.MAX);
+            MAIN_MOTOR = MotorFactory.createSpark("Elevator Main Motor", MAIN_MOTOR_PORT, MotorProperties.SparkType.MAX),
+            FOLLOWER_MOTOR = MotorFactory.createSpark("Elevator Follower Motor", FOLLOWER_MOTOR_PORT, MotorProperties.SparkType.MAX);
 
     protected static final Sensor
-            TOP_BEAM_BREAK = SensorFactory.createDigitalInput("Top Beam Breaker", 2),
-            BOTTOM_BEAM_BREAK = SensorFactory.createDigitalInput("Button Beam Breaker", 3);
+            TOP_BEAM_BREAK = SensorFactory.createDigitalInput("Top Beam Breaker", TOP_BEAM_BREAK_PORT),
+            BOTTOM_BEAM_BREAK = SensorFactory.createDigitalInput("Button Beam Breaker", BOTTOM_BEAM_BREAK_PORT);
 
     private static final MotorConfiguration ELEVATOR_LEFT_MOTOR_CONFIGURATION = new MotorConfiguration();
 
@@ -49,11 +51,11 @@ public class ElevatorConstants {
         );
 
 // issue: The Elevator stops at a specific position for unknown
-        ELEVATOR_LEFT_MOTOR.setupSignalUpdates(MotorSignal.VOLTAGE);
-        ELEVATOR_LEFT_MOTOR.setupSignalUpdates(MotorSignal.POSITION);
-        ELEVATOR_LEFT_MOTOR.setupSignalUpdates(MotorSignal.VELOCITY);
+        MAIN_MOTOR.setupSignalUpdates(MotorSignal.VOLTAGE);
+        MAIN_MOTOR.setupSignalUpdates(MotorSignal.POSITION);
+        MAIN_MOTOR.setupSignalUpdates(MotorSignal.VELOCITY);
 
-        ELEVATOR_LEFT_MOTOR.configure(ELEVATOR_LEFT_MOTOR_CONFIGURATION);
-        ELEVATOR_RIGHT_MOTOR.configure(ELEVATOR_LEFT_MOTOR_CONFIGURATION);
+        MAIN_MOTOR.configure(ELEVATOR_LEFT_MOTOR_CONFIGURATION);
+        FOLLOWER_MOTOR.configure(ELEVATOR_LEFT_MOTOR_CONFIGURATION);
     }
 }

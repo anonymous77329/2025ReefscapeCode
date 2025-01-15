@@ -1,5 +1,7 @@
 package frc.robot.utilities;
 
+import java.util.EnumMap;
+
 /**
  * Class containing constants for ports on the robot.
  * This is useful for keeping track of which ports are used, so no port is used twice.
@@ -24,5 +26,13 @@ public class PortsConstants {
         public static final int RR_STEER_ENCODER_PORT = 21;
 
         public static final int GYRO_PORT = 30;
+    }
+
+    public static class ElevatorPorts {  // Fake ports
+        public static final int
+                MAIN_MOTOR_PORT = 7,
+                FOLLOWER_MOTOR_PORT = 8,
+                TOP_BEAM_BREAK_PORT = 15,
+                BOTTOM_BEAM_BREAK_PORT = 16;
     }
 }
