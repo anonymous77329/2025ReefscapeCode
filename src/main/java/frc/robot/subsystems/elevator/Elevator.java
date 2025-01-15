@@ -5,7 +5,6 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.lib.generic.GenericSubsystem;
-import frc.lib.generic.characterization.StaticFrictionCharacterization;
 import frc.lib.generic.hardware.motor.MotorProperties;
 import frc.lib.math.Conversions;
 import org.littletonrobotics.junction.Logger;
@@ -21,12 +20,12 @@ public class Elevator extends GenericSubsystem {
     }
 
     public void periodic() {
-        if (TOP_BEAM_BREAK.get() == 0) {
+        if (BOTTOM_BEAM_BREAK.get() == 1) {
             ELEVATOR_LEFT_MOTOR.setMotorEncoderPosition(0);
             ELEVATOR_RIGHT_MOTOR.setMotorEncoderPosition(0);
         }
 
-        if (TOP_BEAM_BREAK.get() == ELEVATOR_MAX_EXTENSION_METERS) {
+        if (TOP_BEAM_BREAK.get() == 1) {
             ELEVATOR_LEFT_MOTOR.setMotorEncoderPosition(ELEVATOR_MAX_EXTENSION_METERS);
             ELEVATOR_RIGHT_MOTOR.setMotorEncoderPosition(ELEVATOR_MAX_EXTENSION_METERS);
         }
