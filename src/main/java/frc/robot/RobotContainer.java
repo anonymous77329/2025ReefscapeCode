@@ -64,8 +64,10 @@ public class RobotContainer {
         driveController.getButton(Controller.Inputs.B).whileTrue(AutoBuilder.pathfindToPose(
                 BLUE_BOTTOM_FEEDER.toPose2d(), PATHPLANNER_CONSTRAINTS));
 
-        driveController.getButton(Controller.Inputs.Y).whileTrue(ELEVATOR.setTargetPosition(L2_HEIGHT));
-        driveController.getButton(Controller.Inputs.X).whileTrue(ELEVATOR.setTargetPosition(L3_HEIGHT));
+        driveController.getButton(Controller.Inputs.B).onTrue(ELEVATOR.setTargetPosition(0));
+        driveController.getButton(Controller.Inputs.A).onTrue(ELEVATOR.setTargetPosition(L1_HEIGHT));
+        driveController.getButton(Controller.Inputs.X).onTrue(ELEVATOR.setTargetPosition(L2_HEIGHT));
+        driveController.getButton(Controller.Inputs.Y).onTrue(ELEVATOR.setTargetPosition(L3_HEIGHT));
 
         configureButtons(ButtonLayout.TELEOP);
     }

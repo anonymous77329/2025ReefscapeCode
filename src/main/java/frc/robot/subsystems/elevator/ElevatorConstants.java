@@ -18,44 +18,45 @@ public class ElevatorConstants {
             TOP_BEAM_BREAK = SensorFactory.createDigitalInput("Top Beam Breaker", TOP_BEAM_BREAK_PORT),
             BOTTOM_BEAM_BREAK = SensorFactory.createDigitalInput("Button Beam Breaker", BOTTOM_BEAM_BREAK_PORT);
 
-    private static final MotorConfiguration ELEVATOR_LEFT_MOTOR_CONFIGURATION = new MotorConfiguration();
+    private static final MotorConfiguration ELEVATOR_MOTORS_CONFIGURATION = new MotorConfiguration();
 
     protected static final double
             ELEVATOR_MAX_EXTENSION_METERS = 0.86,
             WHEEL_DIAMETER = 0.05,
             WHEEL_SCOPE = Math.PI * WHEEL_DIAMETER;
 
-    protected static final ElevatorMechanism2d MECHANISM = new ElevatorMechanism2d("Elevator Mechanism", 0.8);
+    protected static final ElevatorMechanism2d MECHANISM = new ElevatorMechanism2d("Elevator Mechanism", 1);
 
     static {
         configureMotorConfiguration();
     }
 
     private static void configureMotorConfiguration() {
-        ELEVATOR_LEFT_MOTOR_CONFIGURATION.idleMode = MotorProperties.IdleMode.BRAKE;
-        ELEVATOR_LEFT_MOTOR_CONFIGURATION.simulationSlot = new MotorProperties.Slot(70, 0, 0, 0, 0,  1.313);
+        ELEVATOR_MOTORS_CONFIGURATION.idleMode = MotorProperties.IdleMode.BRAKE;
+        ELEVATOR_MOTORS_CONFIGURATION.simulationSlot = new MotorProperties.Slot(9, 0, 0, 0, 0,  1.313);// S=1.313
 
-        ELEVATOR_LEFT_MOTOR_CONFIGURATION.profileMaxVelocity = 10;
-        ELEVATOR_LEFT_MOTOR_CONFIGURATION.profileMaxAcceleration = 15;
-        ELEVATOR_LEFT_MOTOR_CONFIGURATION.profileMaxJerk = 150;
+        ELEVATOR_MOTORS_CONFIGURATION.profileMaxVelocity = 10;
+        ELEVATOR_MOTORS_CONFIGURATION.profileMaxAcceleration = 15;
+        ELEVATOR_MOTORS_CONFIGURATION.profileMaxJerk = 150;
 
-        ELEVATOR_LEFT_MOTOR_CONFIGURATION.simulationProperties = new SimulationProperties.Slot(
+        ELEVATOR_MOTORS_CONFIGURATION.simulationProperties = new SimulationProperties.Slot(
                 SimulationProperties.SimulationType.ELEVATOR,
                 DCMotor.getNeoVortex(2),
                 60,
                 24,
                 0.2,
                 0.1,
-                1.1,
+                5.1,
         false
         );
 
-// issue: The Elevator stops at a specific position for unknown
+// issue: The Elevator don't follow her path correctly
+
         MAIN_MOTOR.setupSignalUpdates(MotorSignal.VOLTAGE);
         MAIN_MOTOR.setupSignalUpdates(MotorSignal.POSITION);
         MAIN_MOTOR.setupSignalUpdates(MotorSignal.VELOCITY);
 
-        MAIN_MOTOR.configure(ELEVATOR_LEFT_MOTOR_CONFIGURATION);
-        FOLLOWER_MOTOR.configure(ELEVATOR_LEFT_MOTOR_CONFIGURATION);
+        MAIN_MOTOR.configure(ELEVATOR_MOTORS_CONFIGURATION);
+        FOLLOWER_MOTOR.configure(ELEVATOR_MOTORS_CONFIGURATION);
     }
 }

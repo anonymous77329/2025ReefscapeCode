@@ -10,6 +10,8 @@ public class FieldLocations {
     public static final Pose3d BLUE_BOTTOM_FEEDER = new Pose3d(new Translation3d(0.84319, 0.65078, 0.9525),
             new Rotation3d(0, 0, Math.toRadians(54)));
 
-    public static final double L2_HEIGHT = 2;
-    public static final double L3_HEIGHT = 4;
+    public static final double
+            L1_HEIGHT = 0.45,
+            L2_HEIGHT = 0.8,
+            L3_HEIGHT = 1.21;
 }
